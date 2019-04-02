@@ -6,7 +6,7 @@ class RedditParser
     @lines = page.split("\n")
     @countries = []
     populate_countries
-    ap @countries[-3]
+    @countries
   end
 
   def populate_countries

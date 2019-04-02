@@ -1,20 +1,43 @@
 class RedditScraper
-  def self.scrape(endpoint)
-    # contents = Net::HTTP.get(URI.parse(endpoint.url))
+  def scrape
+    data = RedditParser.new.parse
+    write_to_airtable(data)
+  end
 
-    client = OAuth2::Client.new(ENV['REDDIT_API_KEY'], ENV['REDDIT_API_SECRET'], site: 'https://www.reddit.com/api/v1/authorize')
-    # response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING
+  def write_to_airtable(data)
+    # Pass in api key to client
+    @at_client = Airtable::Client.new('keyTycbrAXKjR7VPu')
+    @at_flgs   = @at_client.table('appPJ6HUieDnNWxOi', 'FLGS')
 
-    client.auth_code.authorize_url(redirect_uri: 'http://localhost:8080/oauth2/callback')
-    # => "https://example.org/oauth/authorization?response_type=code&client_id=client_id&redirect_uri=http://localhost:8080/oauth2/callback"
+    write_records(data)
+  end
 
-    token = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:8080/oauth2/callback', :headers => {'Authorization' => 'Basic some_password'})
-    response = token.get('/api/resource', :params => { 'query_foo' => 'bar' })
-    response.class.name
+  def write_records(countries)
+    countries.each do |country|
+      country[:regions].each do |region|
+        region[:cities].each do |city|
+          city[:stores].each do |store|
+            write_flgs(country: country, region: region, city: city, **store)
+          end
+        end
+      end
+    end
+  end
 
-    puts "-------- CONTENTS --------"
-    puts contents
-    puts "-------- END --------"
-    return
+  def write_flgs(name: '', url: '', data: '', followup: '', phone: '', country: '', region: '', city: '', **blah)
+    record = Airtable::Record.new(
+      'Name'     => name,
+      'URL'      => url,
+      'Data'     => data,
+      'Followup' => followup.try('join', '\n'),
+      'Phone'    => phone,
+      'Country'  => country[:name],
+      'Region'   => region[:name] == :default ? '' : region[:name],
+      'City'     => city[:name] == :default ? '' : city[:name]
+    )
+
+    ap record
+
+    ap @at_flgs.create(record)
   end
 end
