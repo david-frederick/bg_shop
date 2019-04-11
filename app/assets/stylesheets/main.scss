@@ -1,0 +1,35 @@
+.index_contrainer {
+  display: block;
+}
+
+.vertical_center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.text_container {
+  display: inline-block;
+  height: 64px;
+  width: 500px;
+  margin-left: 10px;
+  position: relative;
+}
+
+.img_container {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+img {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+h4 {
+  display: inline-block;
+}

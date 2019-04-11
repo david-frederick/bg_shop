@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  scope :complete, -> { where(bgg_data_collected: true) }
+
   validates :name,   presence: true
   validates :bgg_id, presence: true
 
