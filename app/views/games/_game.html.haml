@@ -3,5 +3,5 @@
     %img{ src: game.thumbnail }
   .text_container
     %h4.vertical_center
-      %a{ href: 'boardgamegeek.com' }
+      %a{ href: game_path(id: game.id) }
         = game.name
