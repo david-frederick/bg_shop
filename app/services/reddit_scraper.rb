@@ -17,6 +17,7 @@ class RedditScraper
       country[:regions].each do |region|
         region[:cities].each do |city|
           city[:stores].each do |store|
+            store[:pg_id] = Shop.create!.id
             write_flgs(country: country, region: region, city: city, **store)
           end
         end
@@ -33,7 +34,8 @@ class RedditScraper
       'Phone'    => phone,
       'Country'  => country[:name],
       'Region'   => region[:name] == :default ? '' : region[:name],
-      'City'     => city[:name] == :default ? '' : city[:name]
+      'City'     => city[:name] == :default ? '' : city[:name],
+      'PGID'     => blah[:pg_id]
     )
 
     ap record
