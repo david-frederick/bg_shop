@@ -5,5 +5,4 @@ staging:
 production:
   :concurrency: 20
 :queues:
-  - verification
-  - scraping
+  - default
