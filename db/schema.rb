@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 2019_04_13_135703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "endpoints", force: :cascade do |t|
-    t.string "url"
-    t.integer "status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.integer "bgg_id", null: false

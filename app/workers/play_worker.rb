@@ -1,4 +1,4 @@
-class HardWorker
+class PlayWorker
   include Sidekiq::Worker
 
   def perform(*args)

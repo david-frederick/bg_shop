@@ -1,4 +1,4 @@
-class AirsyncWorker
+class AirtableSyncWorker
   include Sidekiq::Worker
 
   def perform(*args)
