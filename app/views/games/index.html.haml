@@ -1,3 +1,4 @@
 %h1 Games
 - @games.each do |game|
-  = render partial: "game", locals: { game: game }
+  .row
+    = render partial: "game", locals: { game: game }

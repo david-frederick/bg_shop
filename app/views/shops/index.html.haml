@@ -1,1 +1,4 @@
 %h1 Shops
+- @shops.each do |shop|
+  .row
+    = render partial: "shop", locals: { shop: shop }
