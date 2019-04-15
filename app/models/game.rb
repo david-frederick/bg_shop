@@ -1,6 +1,9 @@
 class Game < ApplicationRecord
   scope :complete, -> { where(bgg_data_collected: true) }
 
+  has_many :shop_games
+  has_many :shops, through: :shop_games
+
   validates :name,   presence: true
   validates :bgg_id, presence: true
 

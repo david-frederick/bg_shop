@@ -10,24 +10,27 @@ class ShopScraper
     run_parse(shop.url)
   end
 
-  def issue_search
+  def scrape_for_search
     with_driver do
       @driver.navigate.to @shop.url
 
-      element = @driver.find_element(xpath: 'input')
+      element = @driver.find_element(xpath: '//input')
       element.send_keys 'burdell'
       element.submit
 
-      puts @driver.title
-
-      byebug
+      @driver.current_url
     end
+  rescue StandardError => e
+    nil
   end
 
   def with_driver
     @driver = Selenium::WebDriver.for :firefox
-    yeild
+    yield
     @driver.quit
+  rescue StandardError => e
+    @driver.quit if defined? @driver
+    raise e
   end
 
   def run_parse(url)

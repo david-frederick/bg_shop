@@ -7,6 +7,8 @@ Things you may want to cover:
 * Ruby/Rails Install
 
 * Postgres
+  * Migrations
+
 
 * Sidekiq
 
