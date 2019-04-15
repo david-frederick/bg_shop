@@ -1,24 +1,23 @@
-# README
+# BOARD GAME SHOPPER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README will help get this application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby/Rails Install
 
-* System dependencies
+* Postgres
 
-* Configuration
+* Sidekiq
 
-* Database creation
+* Redis
 
-* Database initialization
+* `bundle install`
 
-* How to run the test suite
+* `brew install geckodriver`
 
-* Services (job queues, cache servers, search engines, etc.)
+* Rake task to actually get good data
 
-* Deployment instructions
+* Running services
 
-* ...
+* Visiting Webpage

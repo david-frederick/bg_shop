@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_04_13_135703) do
     t.text "raw_followup"
     t.boolean "has_cart"
     t.boolean "has_site"
+    t.boolean "url_valid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -11,6 +11,7 @@ class CreateShops < ActiveRecord::Migration[5.2]
       t.text    :raw_followup
       t.boolean :has_cart
       t.boolean :has_site
+      t.boolean :url_valid
 
       t.timestamps
     end
