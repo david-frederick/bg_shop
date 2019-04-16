@@ -13,7 +13,9 @@ class ShopScraper
 
   def valid_response?(response)
     case response.code
-    when '200'
+    when /2\d\d/
+      true
+    when /3\d\d/
       true
     else
       false
