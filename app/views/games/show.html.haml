@@ -1,2 +1,5 @@
 %h1
   = @game.name
+- @shop_games.each do |shop_game|
+  .row
+    = render partial: "shop_games", locals: { url: shop_game[:url], shop: shop_game[:shop] }
