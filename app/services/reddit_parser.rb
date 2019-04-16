@@ -1,5 +1,5 @@
 class RedditParser
-  FLGS_PAGE = Nokogiri::HTML(open("/users/davidfrederick/Desktop/reddit_flgs.htm"))
+  FLGS_PAGE = Nokogiri::HTML(open(Rails.root.join('reddit_flgs.htm')))
 
   def parse
     page = FLGS_PAGE.css("div[class='md wiki']").to_s

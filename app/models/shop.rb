@@ -1,6 +1,7 @@
 class Shop < ApplicationRecord
-  scope :with_cart, -> { where(has_cart: true) }
-  scope :with_site, -> { where(has_site: true) }
+  scope :with_cart,  -> { where(has_cart: true) }
+  scope :with_site,  -> { where(has_site: true) }
+  scope :searchable, -> { where.not(search_string: nil) }
 
   has_many :shop_games
   has_many :games, through: :shop_games
@@ -9,7 +10,7 @@ class Shop < ApplicationRecord
   after_create :verify
 
   def init_scraper
-    @scraper = ShopScraper.new(self)
+    @scraper = ShopScraper.new
   end
 
   def verify
@@ -29,7 +30,7 @@ class Shop < ApplicationRecord
   end
 
   def verify_site
-    if url_valid && !facebook? && @scraper.site_valid?
+    if url_valid && !facebook? && @scraper.site_valid?(url)
       self.has_site = true
     else
       self.has_site = false
@@ -38,7 +39,7 @@ class Shop < ApplicationRecord
   end
 
   def verify_cart
-    if has_site && @scraper.has_cart?
+    if has_site && @scraper.has_cart?(url)
       self.has_cart = true
     else
       self.has_cart = false
@@ -50,16 +51,25 @@ class Shop < ApplicationRecord
     url =~ /^https:\/\/www.facebook.com\/(.*)$/
   end
 
-  def update_search_url
-    if @scraper.scrape_for_search.present?
-      self.search_string = @scraper.scrape_for_search.gsub(/burdell/, '{{ content }}')
+  def update_search_url(index = nil, total = nil)
+    if index && total
+      puts "  [#{index}/#{total}][id: #{self.id}] updating search url "
+    else
+      puts "  [id: #{self.id}] updating search url "
+    end
+
+    response = @scraper.extract_search_url(url)
+    if response.present?
+      self.search_string = response.gsub(/burdell/, '{{ content }}')
       self.save!
     end
   end
 
-  # def validate_search(search_text)
-  #   return false unless search_string.present?
-  #   search_url = search_string.gsub(/{{ content }}/, search_text)
-  #   @scraper.
-  # end
+  def self.update_search_urls
+    puts '----- UPDATING SEARCH URLS -----'
+    shops = Shop.with_cart
+    shops.each_with_index do |shop,index|
+      shop.update_search_url(index, shops.count)
+    end
+  end
 end

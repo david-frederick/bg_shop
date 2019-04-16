@@ -23,3 +23,19 @@ Things you may want to cover:
 * Running services
 
 * Visiting Webpage
+
+## Populate Data
+
+* Create Games: `Game.generate_all`
+
+* Create Shops: `RedditScraper.new.scrape`
+
+* Synch Airtable Changes to DB: `AirtableSyncher.new.sync_records`
+
+* Run Selenium Search Queries: `Shop.update_search_urls`
+
+* `ShopGame.generate_all`
+
+## TODO
+
+* Include `reddit.htm` in actual project
