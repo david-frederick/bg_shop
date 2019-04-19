@@ -39,16 +39,22 @@ Then install Rails:
 
 Double check this using: `rails -v`
 
-### Postgres
+At this point you should be able to run `bundle install` which will install almost all of the dependancies for the application. Everything not included in that script is listed below.
+
+### PostgreSQL
+
+Install using:
+
+`brew install postgresql`
+
+
 
 ### GeckoDriver
 GeckoDriver is a library used by Selenium. While Selenium is something I could build into the application (and therefore you don't need to install manually), GeckoDriver requires a manual step.
 
-Run this in a console: `brew install geckodriver`
+`brew install geckodriver`
 
-
-
-
+## BRAINSTORMING
 
 Things to Cover:
 
