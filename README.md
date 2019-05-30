@@ -2,7 +2,7 @@
 
 John David Frederick - jfrederick8@gatech.edu
 
-For information on the objectives and architecture of this project, [please see the resulting paper](https://docs.google.com/document/d/1ZtHeZLwRb5XCrAHiVPZwqIOw09eOeeYW9gC66xOdFGc/edit?usp=sharing).
+This is a class project I built for my Enterprise Computing class. The main goal was to explore various software architechture concepts with some source of Big Data. For more information on the objectives and architecture of this project, [please see the resulting paper](https://docs.google.com/document/d/1ZtHeZLwRb5XCrAHiVPZwqIOw09eOeeYW9gC66xOdFGc/edit?usp=sharing).
 
 This README will help get this application up and running.
 
